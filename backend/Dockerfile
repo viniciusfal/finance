@@ -21,7 +21,7 @@ RUN apk --no-cache add ca-certificates
 WORKDIR /root/
 
 # Copy the binary from builder
-COPY --from=builder /app/bin/server .
+COPY --from=builder /app/bin/server ./bin/server
 
 # Copy migrations
 COPY --from=builder /app/migrations ./migrations
@@ -29,5 +29,5 @@ COPY --from=builder /app/migrations ./migrations
 # Expose port
 EXPOSE 8080
 
-# Run the binary
-CMD ["./server"]
+# Run the binary (Railway will set PORT automatically)
+CMD ["./bin/server"]
