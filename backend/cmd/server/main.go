@@ -48,8 +48,34 @@ func main() {
 		c.Next()
 	})
 
+	// Rota de health check
+	router.GET("/health", func(c *gin.Context) {
+		c.JSON(200, gin.H{"status": "ok", "message": "Backend is running"})
+	})
+
+	// Rota raiz para teste
+	router.GET("/", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"message": "Financy API",
+			"version": "1.0.0",
+			"endpoints": []string{
+				"/api/transactions",
+				"/api/categories",
+				"/api/dashboard/summary",
+			},
+		})
+	})
+
 	// Configurar rotas
 	routes.SetupRoutes(router, db)
+
+	// Log das rotas registradas (apenas em modo debug)
+	if os.Getenv("GIN_MODE") == "debug" {
+		log.Println("Registered routes:")
+		for _, route := range router.Routes() {
+			log.Printf("  %s %s", route.Method, route.Path)
+		}
+	}
 
 	// Iniciar servidor
 	port := os.Getenv("PORT")
@@ -58,7 +84,8 @@ func main() {
 	}
 
 	log.Printf("Server starting on port %s", port)
-	if err := router.Run(":" + port); err != nil {
+	log.Printf("API available at http://0.0.0.0:%s/api", port)
+	if err := router.Run("0.0.0.0:" + port); err != nil {
 		log.Fatal("Failed to start server:", err)
 	}
 }
