@@ -10,6 +10,9 @@ RUN npm install --legacy-peer-deps
 # Copy source code
 COPY . .
 
+# Run svelte-kit sync to generate .svelte-kit directory
+RUN npx svelte-kit sync || true
+
 # Build the application
 RUN npm run build
 
