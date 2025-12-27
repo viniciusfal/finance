@@ -83,6 +83,14 @@ func main() {
 		log.Printf("  %s %s", route.Method, route.Path)
 	}
 
+	// Log das rotas registradas (apenas em modo debug)
+	if os.Getenv("GIN_MODE") == "debug" {
+		log.Println("Registered routes:")
+		for _, route := range router.Routes() {
+			log.Printf("  %s %s", route.Method, route.Path)
+		}
+	}
+
 	// Iniciar servidor
 	port := os.Getenv("PORT")
 	if port == "" {
