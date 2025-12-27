@@ -1,4 +1,5 @@
-const API_BASE = '/api';
+// Usa variável de ambiente se disponível, senão usa /api (proxy local)
+const API_BASE = import.meta.env.PUBLIC_API_URL || '/api';
 
 async function request(endpoint, options = {}) {
 	const response = await fetch(`${API_BASE}${endpoint}`, {
