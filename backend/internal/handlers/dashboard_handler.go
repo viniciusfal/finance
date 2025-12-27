@@ -25,3 +25,4 @@ func (h *DashboardHandler) GetSummary(c *gin.Context) {
 
 	c.JSON(http.StatusOK, summary)
 }
+

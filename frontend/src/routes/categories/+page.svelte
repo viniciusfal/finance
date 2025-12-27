@@ -94,3 +94,4 @@
 {#if showForm}
 	<CategoryForm category={editingCategory} on:close={handleFormClose} on:submit={handleFormSubmit} />
 {/if}
+

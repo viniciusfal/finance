@@ -23,3 +23,4 @@ export function formatDateInput(date) {
 	const day = String(d.getDate()).padStart(2, '0');
 	return `${year}-${month}-${day}`;
 }
+

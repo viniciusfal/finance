@@ -135,3 +135,4 @@ func (u *TransactionUsecase) PayInstallment(ctx context.Context, transactionID i
 
 	return u.repo.PayInstallment(ctx, transactionID, installmentNumber)
 }
+

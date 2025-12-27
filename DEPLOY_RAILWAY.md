@@ -217,3 +217,4 @@ func InitDB() (*pgxpool.Pool, error) {
 **Frontend não encontra a API**
 - Verifique a variável `PUBLIC_API_URL` no Railway
 - Verifique os logs do frontend no Railway
+

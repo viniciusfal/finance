@@ -35,3 +35,4 @@ type Transaction struct {
 	Category          *Category         `json:"category,omitempty"`
 	Installments      []Installment     `json:"installments,omitempty"`
 }
+

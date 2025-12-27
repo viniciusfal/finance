@@ -20,3 +20,4 @@ func SetupDashboardRoutes(router *gin.RouterGroup, db *pgxpool.Pool) {
 		dashboard.GET("/summary", dashboardHandler.GetSummary)
 	}
 }
+

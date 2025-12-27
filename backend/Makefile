@@ -8,3 +8,4 @@ run:
 
 migrate:
 	cd cmd/migrate && go run main.go
+

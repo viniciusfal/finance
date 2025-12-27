@@ -24,3 +24,4 @@ func SetupTransactionRoutes(router *gin.RouterGroup, db *pgxpool.Pool) {
 		transactions.POST("/:id/installments/:installment/pay", transactionHandler.PayInstallment)
 	}
 }
+

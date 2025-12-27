@@ -54,3 +54,4 @@ func (u *DashboardUsecase) GetSummary(ctx context.Context) (*DashboardSummary, e
 		CategoryExpenses: categoryExpenses,
 	}, nil
 }
+

@@ -44,3 +44,4 @@ export const api = {
 		getSummary: () => request('/dashboard/summary')
 	}
 };
+

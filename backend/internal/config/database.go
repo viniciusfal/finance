@@ -42,3 +42,4 @@ func InitDB() (*pgxpool.Pool, error) {
 
 	return pool, nil
 }
+

@@ -32,6 +32,12 @@ func main() {
 	// Criar router
 	router := gin.Default()
 
+	// Middleware de logging para debug
+	router.Use(func(c *gin.Context) {
+		log.Printf("[%s] %s %s", c.Request.Method, c.Request.URL.Path, c.Request.RemoteAddr)
+		c.Next()
+	})
+
 	// Configurar CORS - Aceita qualquer origem (*)
 	router.Use(func(c *gin.Context) {
 		c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
@@ -48,8 +54,34 @@ func main() {
 		c.Next()
 	})
 
+	// Rota de health check
+	router.GET("/health", func(c *gin.Context) {
+		c.JSON(200, gin.H{"status": "ok", "message": "Backend is running"})
+	})
+
+	// Rota raiz para teste
+	router.GET("/", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"message": "Financy API",
+			"version": "1.0.0",
+			"endpoints": []string{
+				"/api/transactions",
+				"/api/categories",
+				"/api/dashboard/summary",
+			},
+		})
+	})
+
 	// Configurar rotas
+	log.Println("Setting up routes...")
 	routes.SetupRoutes(router, db)
+	log.Println("Routes configured successfully")
+
+	// Log das rotas registradas (sempre logar para debug)
+	log.Println("Registered routes:")
+	for _, route := range router.Routes() {
+		log.Printf("  %s %s", route.Method, route.Path)
+	}
 
 	// Iniciar servidor
 	port := os.Getenv("PORT")
@@ -57,8 +89,11 @@ func main() {
 		port = "8080"
 	}
 
-	log.Printf("Server starting on port %s", port)
-	if err := router.Run(":" + port); err != nil {
+	log.Printf("Server starting on 0.0.0.0:%s", port)
+	log.Printf("API available at http://0.0.0.0:%s/api", port)
+	log.Printf("Health check: http://0.0.0.0:%s/health", port)
+
+	if err := router.Run("0.0.0.0:" + port); err != nil {
 		log.Fatal("Failed to start server:", err)
 	}
 }

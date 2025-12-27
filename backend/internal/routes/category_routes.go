@@ -23,3 +23,4 @@ func SetupCategoryRoutes(router *gin.RouterGroup, db *pgxpool.Pool) {
 		categories.DELETE("/:id", categoryHandler.Delete)
 	}
 }
+

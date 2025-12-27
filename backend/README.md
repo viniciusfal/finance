@@ -57,3 +57,4 @@ O servidor estará rodando em `http://localhost:8080`
 
 ### Dashboard
 - `GET /api/dashboard/summary` - Resumo financeiro
+

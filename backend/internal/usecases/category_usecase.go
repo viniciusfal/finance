@@ -63,3 +63,4 @@ func (u *CategoryUsecase) Delete(ctx context.Context, id int64) error {
 
 	return u.repo.Delete(ctx, id)
 }
+

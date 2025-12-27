@@ -29,5 +29,6 @@ COPY --from=builder /app/migrations ./migrations
 # Expose port
 EXPOSE 8080
 
-# Run the binary
+# Run the binary directly (Railway will set PORT automatically)
 CMD ["./bin/server"]
+

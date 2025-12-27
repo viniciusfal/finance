@@ -130,3 +130,4 @@ func (r *CategoryRepository) Delete(ctx context.Context, id int64) error {
 
 	return nil
 }
+

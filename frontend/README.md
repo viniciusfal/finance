@@ -31,3 +31,4 @@ src/
 │   └── utils/        # Utilitários
 └── routes/           # Páginas (SvelteKit)
 ```
+

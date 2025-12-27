@@ -54,3 +54,4 @@ function createCategoriesStore() {
 }
 
 export const categories = createCategoriesStore();
+

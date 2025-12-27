@@ -13,3 +13,4 @@ func SetupRoutes(router *gin.Engine, db *pgxpool.Pool) {
 		SetupDashboardRoutes(api, db)
 	}
 }
+
